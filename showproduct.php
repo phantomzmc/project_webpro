@@ -7,9 +7,10 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  </head>
-  <body>
 
+  </head>
+  <body >
+    <div class="col-sm-12 col-xs-12 col-md-12">
     <nav class="navbar navbar-inverse">
     <div class="container-fluid">
     <div class="navbar-header">
@@ -18,20 +19,25 @@
     <ul class="nav navbar-nav">
       <li class="active"><a href="showproduct.php">เเสดงรายการสินค้า</a></li>
       <li><a href="insert_product.php" target="_self">เพิ่มรายการสินค้า</a></li>
-      <li><a href="index.php" target="_parent">Logout</a></li>
+      <li><a href="logout.php">Logout</a></li>
     </ul>
     </div>
     </nav>
-  <body>
-    <div class="container">
 
+    </div>
+
+
+  </div>
+    <div class="container">
+      <div class="col-sm-12">
 
     <?php
 include "connect.php";
 
 $sql = "SELECT id,name,price,detail,img FROM tbcoffee";
 $result = $conn->query($sql);
-echo "<table class='table table-striped'>";
+
+echo "<table class='table table-hover'>";
 if ($result->num_rows > 0) {
    echo "<tr>
           <th>รหัสสินค้า</th>
@@ -57,7 +63,7 @@ if ($result->num_rows > 0) {
          <td><?=$row["detail"]?></td>
 		 <?php $mm=$row["img"];?>
 
-		 <td><img src="images/<?=$mm?>"></td>
+		 <td><img src="images/<?=$mm?>" width="150" height="150"></td>
         <td><a href="editproduct.php?id=<?=$jj?>">เเก้ไขข้อมูล</a></td>
           <td><a href="deleteproduct.php?id=<?=$jj?>">ลบข้อมูล</a></td>
    </tr>
@@ -68,6 +74,7 @@ if ($result->num_rows > 0) {
   echo "</table>";
 $conn->close();
 ?>
+      </div>
 </div>
 <script src="assets/jquery.js"></script>
 

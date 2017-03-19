@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
   </head>
   <nav class="navbar navbar-inverse">
   <div class="container-fluid">
@@ -37,7 +38,6 @@ $file_pic_type=$_FILES['file_pic']['type'];
 		echo "<h3>error : กรุณาป้อนชื่อ</h3>";
 		exit();
 }*/
-echo "gdgdfgdf $file_pic";
 $sql = "INSERT INTO tbcoffee(id,name,price,detail)
 VALUES (NULL, '$name', '$price','$detail')";
 
@@ -54,7 +54,6 @@ if($file_pic) {
 			$row=mysqli_fetch_array($result2,MYSQLI_NUM);
 			$photoname=$row[0].".".$lastname;
 			copy($file_pic,"images/".$photoname);
-      echo "12345678 $photoname";
 			$sql3="update tbcoffee set img='$photoname'  where  id='$row[0]' ";
 			$result3=$conn->query($sql3);
 
@@ -62,9 +61,11 @@ if($file_pic) {
 		unlink($file_pic);
 }
 
-echo "<h3><center>เพิ่มรายการเรียบร้อยแล้ว</center></h3>";
+echo "<div class='alert alert-success'>
+  <strong><h3 align='center'>Success! เพิ่มรายการสินค้าสำเร็จ</h3></strong>
+</div>";
 $conn->close();
 ?>
-  <button type="button" class="btn btn-link btn-lg btn-block"><a href="showproduct.php">เเสดงรายการสินค้า</a></button>
+<a href="showproduct.php" class="btn btn-info btn-block" role="button">เเสดงสินค้าทั้งหมด</a>
   </body>
 </html>
